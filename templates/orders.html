@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Мої замовлення — Trattoria{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="margin-bottom: 25px;">Мої замовлення</h1>
+    
+    {% if orders %}
+        <div class="dishes-grid">
+            {% for order in orders %}
+                <div class="dish-card">
+                    <div class="dish-info">
+                        <h3>{{ order.dish.name }}</h3>
+                        <p class="dish-desc">Дата замовлення: {{ order.date.strftime('%d.%m.%Y о %H:%M') }}</p>
+                    </div>
+                    <div class="dish-footer">
+                        <span class="dish-price">{{ order.dish.price }} грн</span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">({{ order.dish.price }} грн/шт.)</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-dishes">
+            <p>У вас поки немає замовлень.</p>
+            <a href="{{ url_for('menu') }}" class="btn-search" style="margin-top: 20px; display: inline-block;">Перейти до меню</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

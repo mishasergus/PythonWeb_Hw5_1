@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ dish.name }} — Trattoria{% endblock %}
+
+{% block content %}
+<div class="dish-detail-container">
+    <a href="{{ url_for('menu') }}" class="back-link">← Назад до меню</a>
+    <form class="dish-detail-card" action="{{ url_for('order', dish_id=dish.id) }}" method="POST">
+        <h1>{{ dish.name }}</h1>
+        <p class="dish-category">Категорія: <strong>{{ dish.category.name if dish.category else 'Без категорії' }}</strong></p>
+        <p class="dish-full-desc">{{ dish.description }}</p>
+        <div class="dish-meta">
+            <span class="dish-price-large">{{ dish.price }} грн</span>
+        </div>
+        <button type="submit" class="btn-order">Замовити</button>
+    </form>
+</div>
+{% endblock %}

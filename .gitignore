@@ -1,0 +1,26 @@
+# Віртуальні середовища
+.venv/
+venv/
+ENV/
+env/
+
+# Бази даних та папки екземплярів Flask
+*.db
+*.sqlite3
+instance/
+
+# Кеш Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Налаштування редакторів та середовищ розробки (PyCharm, VS Code)
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Конфіденційні файли
+.env
+.env.local

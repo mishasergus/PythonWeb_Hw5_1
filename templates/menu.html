@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Меню — Trattoria{% endblock %}
+
+{% block content %}
+<section class="menu-section">
+    <h1>Наше Меню</h1>
+
+    <!-- Форма пошуку -->
+    <form method="GET" action="{{ url_for('menu', slug=current.slug if current else None) }}" class="search-form">
+        <input type="text" name="q" value="{{ q }}" placeholder="Пошук страв..." class="search-input">
+        <button type="submit" class="btn-search">Знайти</button>
+        {% if q %}
+            <a href="{{ url_for('menu', slug=current.slug if current else None) }}" class="btn-reset">Скинути</a>
+        {% endif %}
+    </form>
+
+    <!-- Список категорій -->
+    <div class="categories-list">
+        <a href="{{ url_for('menu', q=q) }}" class="category-chip {% if not current %}active{% endif %}">Всі страви</a>
+        {% for cat in categories %}
+            <a href="{{ url_for('menu', slug=cat.slug, q=q) }}" class="category-chip {% if current and current.id == cat.id %}active{% endif %}">
+                {{ cat.name }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <!-- Сітка страв -->
+    <div class="dishes-grid">
+        {% if dishes %}
+            {% for d in dishes %}
+                <div class="dish-card">
+                    <div class="dish-info">
+                        <h3><a href="{{ url_for('dish', dish_id=d.id) }}">{{ d.name }}</a></h3>
+                        <p class="dish-desc">{{ d.description }}</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">{{ d.price }} грн</span>
+                            <a href="{{ url_for('dish', dish_id=d.id) }}" class="btn-details">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-dishes">Страв за вашим запитом не знайдено.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

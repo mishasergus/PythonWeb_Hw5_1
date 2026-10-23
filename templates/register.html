@@ -1,11 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}Сторінку не знайдено{% endblock %}
+{% block title %}Реєстрація — Trattoria{% endblock %}
 
 {% block content %}
-<div class="error-container">
-    <h1>404</h1>
-    <p>Ой! Сторінку, яку ви шукаєте, не знайдено або вона була видалена.</p>
-    <a href="{{ url_for('menu') }}" class="btn-details">Повернутися до меню</a>
+<div class="auth-container">
+    <div class="auth-card">
+        <h1 class="auth-title">Створення акаунту</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('register') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Ім'я користувача</label>
+                <input type="text" id="username" name="username" class="form-control" required placeholder="mario_rossi">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required placeholder="example@mail.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" class="form-control" required placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="btn-order" style="margin-top: 10px;">Зареєструватися</button>
+        </form>
+
+        <p class="auth-footer-text">
+            Вже зареєстровані? <a href="{{ url_for('login') }}">Увійти</a>
+        </p>
+    </div>
 </div>
 {% endblock %}

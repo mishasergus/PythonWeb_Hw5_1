@@ -299,3 +299,84 @@ body {
 .btn-order:active {
     transform: scale(0.99);
 }
+
+
+/* Auth / Forms Styling */
+.auth-container {
+    max-width: 420px;
+    margin: 40px auto;
+}
+
+.auth-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-control {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.auth-footer-text {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.auth-footer-text a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer-text a:hover {
+    text-decoration: underline;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    text-align: center;
+}

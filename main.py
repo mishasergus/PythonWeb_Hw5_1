@@ -3,6 +3,7 @@ from models import db, Category, Dish, User, Order
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'qqwwee'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///trattoria.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -54,23 +55,20 @@ def load_user(userId):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    print(6)
     if request.method == 'POST':
         username = request.form['username'].strip()
         email = request.form['email'].strip()
         password = request.form['password'].strip()
 
-        exist_user = db.session.scalar(db.select(User).where(User.username == username))
+        exist_user = db.session.scalar(db.select(User).where(User.userName == username))
 
         if exist_user:
-            flash("This user existing")
             return redirect(url_for('register'))
-        new_user = User(username = username,
+        new_user = User(userName = username,
                         email = email)
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
-        flash("Registration successful")
         return redirect(url_for('login'))
     return render_template('register.html')
 
